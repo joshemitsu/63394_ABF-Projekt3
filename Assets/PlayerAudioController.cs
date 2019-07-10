@@ -8,21 +8,17 @@ public class PlayerAudioController : MonoBehaviour
 
     enum eSurfaces { GRASS, ROAD, WATER };
     private eSurfaces lastSurface = eSurfaces.ROAD;
-    private Vector3 lastPos;
-    private bool playerMoving = false;
     private AudioSource audiosource;
 
     // Start is called before the first frame update
     void Start()
     {
-        lastPos = gameObject.transform.position;
         audiosource = GetComponent<AudioSource>();
     }
 
     void Update()
     {
-        checkPlayerMovement();
-        if(playerMoving)
+        if(playerIsMoving())
         {
             RaycastHit surfacePlane;
             string surfaceTag = "";
@@ -73,30 +69,8 @@ public class PlayerAudioController : MonoBehaviour
 
     }
 
-    private void checkPlayerMovement()
+    private bool playerIsMoving()
     {
-        //return (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.D));
-
-        /*
-        Vector3 curPos = gameObject.transform.position;
-        if(curPos == lastPos)
-        {
-            return false;
-        }
-        //Debug.Log((curPos - lastPos).magnitude);
-        lastPos = curPos;
-        return true;
-        */
-
-        Vector3 curPos = gameObject.transform.position;
-
-        if ((curPos - lastPos).magnitude <= 0.02f)
-        {
-            playerMoving = false;
-            return;
-        }
-
-        playerMoving = true;
-        lastPos = curPos;
+        return (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D));
     }
 }
