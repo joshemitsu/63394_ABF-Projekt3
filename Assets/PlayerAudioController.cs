@@ -32,7 +32,7 @@ public class PlayerAudioController : MonoBehaviour
                 if (surfaceTag == "grass" && (lastSurface != eSurfaces.GRASS))
                 {
                     lastSurface = eSurfaces.GRASS;
-                    audiosource.volume = 0.2f;
+                    audiosource.volume = 0.1f;
                     audiosource.clip = surfaceSounds[0];
                     Debug.Log("grass!");
                 }
@@ -62,7 +62,7 @@ public class PlayerAudioController : MonoBehaviour
         {
             if(audiosource.isPlaying)
             {
-                Debug.Log("pause!");
+                //Debug.Log("pause!");
                 audiosource.Pause();
             }
         }
